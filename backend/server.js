@@ -179,6 +179,13 @@ app.post('/api/sessions', async (req, res) => {
       }));
       await supabase.from('extracted_signals').insert(signalsToInsert);
     }
+  } else {
+    // Seed the initial welcome message so it's persisted for new custom sessions
+    await supabase.from('messages').insert([{
+      session_id: session.id,
+      role: 'assistant',
+      content: 'Tell me about this person in your own words. What makes them smile after a long day?'
+    }]);
   }
 
   res.json(session);
@@ -195,6 +202,31 @@ app.patch('/api/sessions/:id', async (req, res) => {
 
   if (error) return res.status(500).json({ error: error.message });
   res.json(data[0]);
+});
+
+// 3. Delete Session (Cascading manually for safety)
+app.delete('/api/sessions/:id', async (req, res) => {
+  const { id } = req.params;
+  
+  try {
+    // 1. Clear related records (manual cascade or Supabase will handle if configured)
+    await Promise.all([
+      supabase.from('messages').delete().eq('session_id', id),
+      supabase.from('extracted_signals').delete().eq('session_id', id),
+      supabase.from('gift_directions').delete().eq('session_id', id)
+    ]);
+
+    // 2. Clear Session
+    const { error } = await supabase
+      .from('sessions')
+      .delete()
+      .eq('id', id);
+
+    if (error) throw error;
+    res.json({ status: 'deleted', id });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // 1. Session Retrieval (Full Hydration)
@@ -240,6 +272,17 @@ app.post('/api/messages', async (req, res) => {
     // Call "Meaning Engine" (Groq) to interpret signals
     const interpretation = await extractSignals(history);
     
+    const summaryText = interpretation && interpretation.summary ? interpretation.summary : 'No signals detected.';
+    const botReplyContent = `Got it. I'm starting to see a pattern: ${summaryText}`;
+
+    // Save assistant message to ensure it's persisted for history re-hydration
+    const { data: aiMsgData } = await supabase
+      .from('messages')
+      .insert([{ session_id: sessionId, role: 'assistant', content: botReplyContent }])
+      .select();
+
+    const replyId = aiMsgData && aiMsgData.length > 0 ? aiMsgData[0].id : Date.now();
+    
     if (interpretation && interpretation.signals) {
       const allowedTypes = ['personality', 'interest', 'memory', 'tone'];
       const signalsToSave = interpretation.signals
@@ -260,7 +303,9 @@ app.post('/api/messages', async (req, res) => {
     res.json({ 
       status: 'interpreted', 
       signals: interpretation ? interpretation.signals : [], 
-      summary: interpretation ? interpretation.summary : 'No signals detected.' 
+      summary: summaryText,
+      reply: botReplyContent,
+      replyId: replyId
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
