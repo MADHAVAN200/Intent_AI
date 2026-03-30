@@ -1,0 +1,337 @@
+.directions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 4rem 4%;
+  background-color: var(--engine-bg);
+  background-image: var(--engine-bg-gradient);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+.directions-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.directions-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+}
+
+.suggestion-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--card-surface);
+  border: 1px solid var(--border-dim);
+  border-radius: 3rem;
+  font-size: 0.95rem;
+  color: var(--accent-primary);
+}
+
+.badge-icon {
+  color: #2563eb;
+}
+
+.text-bold {
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  width: 100%;
+  max-width: 1800px;
+}
+
+.direction-card {
+  background: var(--card-surface);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid var(--border-dim);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  box-shadow: var(--card-shadow);
+}
+
+.direction-card:hover {
+  transform: translateY(-5px);
+  background: var(--card-surface);
+  border-color: var(--accent-primary);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-high {
+  background-color: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+}
+
+.color-medium {
+  background-color: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+}
+
+.tag-group-directions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.learned-badge {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #10b981;
+  background-color: rgba(16, 185, 129, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.confidence-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 2rem;
+  letter-spacing: 0.05em;
+}
+
+.tag-high {
+  background-color: var(--accent-primary);
+  color: white;
+  opacity: 0.8;
+}
+
+.tag-medium {
+  background-color: var(--card-surface);
+  color: var(--text-muted);
+}
+
+.tag-low {
+  background-color: var(--card-surface);
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.color-low {
+  background-color: var(--card-surface);
+  color: var(--text-muted);
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--text-primary);
+}
+
+.card-description {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.why-works-section {
+  margin-bottom: 2rem;
+  background-color: var(--card-surface);
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border-dim);
+}
+
+.why-works-title {
+  padding: 0.75rem 1rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.why-works-content.persistent {
+  padding: 0 1rem 1.25rem 1rem;
+}
+
+.why-works-content p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.card-actions-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.btn-accept {
+  flex: 1.5;
+  padding: 0.75rem;
+  background-color: var(--accent-primary);
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-accept:hover {
+  background-color: var(--accent-secondary);
+  transform: translateY(-2px);
+}
+
+.btn-reject {
+  flex: 1;
+  padding: 0.75rem;
+  background-color: var(--card-surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border-dim);
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-reject:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* Scaling down to 80% */
+@media screen and (min-width: 1400px) {
+  .cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .directions-container {
+    padding: 2.5rem 1.25rem;
+  }
+  .directions-title {
+    font-size: 1.85rem;
+  }
+  .suggestion-badge {
+    font-size: 0.7rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.header-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1800px;
+}
+
+.btn-refine {
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.btn-refine:hover {
+  background-color: #f1f5f9 !important;
+  transform: translateX(-3px);
+  border-color: #cbd5e1 !important;
+}
+
+.loading-state, .error-state {
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #e2e8f0;
+  border-top: 5px solid #0052ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.fade-action {
+  opacity: 0.6;
+  pointer-events: none;
+  filter: grayscale(0.5);
+}
+
+.btn-accept.active {
+  background-color: #059669;
+  box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.3);
+}
+
+.btn-reject.active {
+  background-color: #fee2e2;
+  color: #ef4444;
+  border-color: #fecaca;
+}
+
+.btn-back {
+  margin-top: 1rem;
+  padding: 0.75rem 2rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
