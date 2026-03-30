@@ -1,0 +1,135 @@
+.identity-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--engine-bg);
+  background-image: var(--engine-bg-gradient);
+  padding: 20px;
+}
+
+.identity-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--card-surface);
+  border: 1px solid var(--border-dim);
+  box-shadow: var(--card-shadow);
+  border-radius: 24px;
+  padding: 48px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+}
+
+.identity-header {
+  margin-bottom: 40px;
+}
+
+.brand-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: white;
+}
+
+.identity-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.identity-header p {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.identity-form {
+  margin-bottom: 32px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.input-group input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px 16px 16px 48px;
+  background: var(--card-surface);
+  border: 1px solid var(--border-dim);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  background: var(--card-surface);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.identify-btn {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px;
+  background: var(--text-primary);
+  border: none;
+  border-radius: 12px;
+  color: var(--engine-bg);
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.identify-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.identify-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 14px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 8px;
+}
+
+.identity-footer {
+  padding-top: 24px;
+  border-top: 1px solid var(--border-dim);
+}
+
+.identity-footer p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
